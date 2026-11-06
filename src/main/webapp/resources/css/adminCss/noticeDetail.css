@@ -1,0 +1,61 @@
+/* 공지사항 상세 페이지 스타일 */
+.container {
+	max-width: 1080px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	font-family: Arail, sans-serif;
+}
+
+h2 {
+	font-weight: bold;
+	padding-top: 4px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+th, td {
+	padding: 10px 15px;
+	border: 1px solid rgb(200, 200, 200);
+}
+
+th {
+	background-color: #e6e6fa; /* 연한 하늘색 */
+	font-weight: bold;
+	width: 25%; /* 너비 조정 */
+}
+
+.btn {
+	background-color: rgb(100, 149, 237);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.button-group {
+	justify-content: center;
+	text-align: center;
+}
+
+.btn.small-btn {
+	display: inline-block;
+	color: white; /* 텍스트 색상 */
+	background-color: rgb(100, 149, 237);
+	text-decoration: none; /* 밑줄 제거 */
+	border-radius: 5px; /* 둥근 모서리 */
+	cursor: pointer;
+	padding: 0; /* 내부 여백 제거 */
+	border: none;
+	padding: 10px 20px;
+}
+
+.btn.small-btn:hover {
+	background-color: rgb(72, 118, 230);
+}

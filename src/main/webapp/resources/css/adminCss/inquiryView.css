@@ -1,0 +1,137 @@
+/* 회원용 문의답변 상세 보기 스타일*/
+.total-inquiry-detail-container {
+	padding: 0;
+	font-family: Arail, sans-serif;
+	max-width: 1080px;
+	display: flex;
+	margin: 0 auto;
+}
+
+.view-container {
+	margin-left: 30px;
+	width: 900px;
+	box-sizing: border-box;
+	postition: relative;
+	background-color: #fff;
+	padding: 20px;
+}
+
+.inquiry-detail-title {
+	padding-bottom: 2px;
+}
+
+.status-div {
+	padding-bottom: 15px;
+}
+
+.status-div select {
+	width: 90px;
+	height: 25px;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: block;
+}
+
+input[type="text"], textarea {
+	font-family: Arial, sans-serif;
+	font-size: 17px;
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: none;
+	border-radius: 3px;
+	background-color: #f4f4f4;
+}
+
+textarea {
+	width: 100%;
+	resize: none;
+	height: 200px;
+}
+
+input[type="button"] {
+	background-color: rgb(100, 149, 237);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 20px;
+	display: block;
+	margin-left: auto; /* 중앙 정렬 */
+	margin-right: auto; /* 중앙 정렬 */
+	width: 100px;
+}
+
+input[type="button"]:hover {
+	background-color: rgb(72, 118, 230);
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+b {
+	color: grey;
+}
+
+/* 사이드바 스타일 */
+.myPagesidebar {
+	height: 100vh;
+	color: #fff;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	width: 180px;
+}
+
+.sidebar_section1 {
+	width: 180px;
+	box-sizing: border-box;
+	font-weight: bold;
+	height: 300px;
+	margin-top: 50px;
+	display: flex;
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+}
+
+.sidebar1 {
+	width: 180px;
+}
+
+.side_title1 {
+	font-size: 22px;
+	padding: 10px;
+	padding-left: 40px;
+}
+
+.side_content1 {
+	font-size: 17px;
+	padding: 10px;
+	text-align: center;
+}
+
+.side_content1 a {
+	margin-bottom: 20px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+	height: 55px;
+}
+
+.side_content1 a {
+	text-decoration: none;
+	color: black;
+}
+
+.side_content1 a:hover {
+	background-color: black;
+	color: white;
+}

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertNotice">
+    INSERT INTO NOTICE
+    VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?, DEFAULT, ?, DEFAULT, ?,?)
+	</entry>
+	
+	<entry key="insertAttachment">
+    INSERT INTO ATTACHMENT
+    (FILE_NO, REF_NNO, ORIGIN_NAME, CHANGE_NAME, FILE_PATH, UPLOAD_DATE, ATTACH_STATUS, FILE_LEVEL)
+    VALUES (SEQ_FNO.NEXTVAL, SEQ_NOTICE_NO.CURRVAL, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)
+	</entry>
+
+
+	
+	<entry key="selectList">
+		SELECT *
+		FROM NOTICE
+		JOIN ADMIN USING (ADMIN_NO)
+		ORDER BY NOTICE_NO DESC
+	</entry>
+	
+	<entry key="selectNotice">
+		SELECT 
+			NOTICE_NO,
+			NOTICE_TITLE,
+			NOTICE_CONTENT,
+			ADMIN_NO,
+			N. CREATE_DATE,
+			FILE_NO,
+			ORIGIN_NAME,
+			CHANGE_NAME,
+			FILE_PATH
+		FROM NOTICE N
+		JOIN ADMIN USING (ADMIN_NO)
+		LEFT JOIN ATTACHMENT A ON (NOTICE_NO = REF_NNO AND A.ATTACH_STATUS ='Y')
+		WHERE NOTICE_NO = ?
+	</entry>
+	
+	<entry key="updateNotice">
+		UPDATE NOTICE
+			SET NOTICE_TITLE = ?,
+				NOTICE_CONTENT = ?,
+				NOTICE_STATUS = ?,
+				NOTICE_LEVEL = ?
+			WHERE NOTICE_NO = ?
+	</entry>
+	
+	<entry key="updateAttachment">
+		UPDATE ATTACHMENT
+			SET ORIGIN_NAME = ?,
+				CHANGE_NAME = ?
+				UPLOAD_DATE = DEFAULT
+			WHERE FILE_NO = ?
+	</entry>
+	
+	
+	<entry key="deleteAttachment">
+		UPDATE ATTACHMENT
+			SET ATTACH_STATUS = 'N'
+			WHERE FILE_NO = ? 
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT INTO ATTACHMENT
+		(FILE_NO, REF_NNO, ORIGIN_NAME, CHANGE_NAME, FILE_PATH, UPLOAD_DATE, ATTACH_STATUS, FILE_LEVEL)
+		VALUES (SEQ_FNO.NEXTVAL, ?, ?, ?, ? ,DEFAULT, DEFAULT, DEFAULT)
+	</entry>
+	
+	<entry key="selectListCount">
+		SELECT COUNT(*)
+		FROM NOTICE
+	</entry>
+	
+	<entry key="selectNoticeList">
+		SELECT *
+		FROM(
+			SELECT ROWNUM RNUM, A.*
+			FROM (
+				SELECT
+					NOTICE_NO,
+					NOTICE_LEVEL,
+					NOTICE_TITLE,
+					NOTICE_STATUS,
+					N.CREATE_DATE,
+					N.ADMIN_NO,
+					NOTICE_COUNT
+				FROM NOTICE N
+				JOIN ADMIN AD ON (N.ADMIN_NO = AD.ADMIN_NO)
+				WHERE NOTICE_STATUS IN ('X','Y')
+				ORDER BY NOTICE_NO DESC) A
+			)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectFilteredNoticeList">
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, A.*
+				FROM(SELECT 
+						NOTICE_NO,
+						NOTICE_LEVEL,
+						NOTICE_TITLE,
+						NOTICE_STATUS,
+						N.CREATE_DATE,
+						N.ADMIN_NO,
+						NOTICE_COUNT
+						FROM NOTICE N
+						WHERE NOTICE_LEVEL = ? AND NOTICE_TITLE LIKE ?
+						ORDER BY NOTICE_NO DESC) A
+			)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectFilteredListCount">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE NOTICE_LEVEL = ? AND NOTICE_TITLE LIKE ?
+	</entry>
+	
+	<entry key="deleteNotice">
+		UPDATE NOTICE
+			SET NOTICE_STATUS = 'Z'
+			WHERE NOTICE_NO = ? 
+	</entry>
+	
+</properties>

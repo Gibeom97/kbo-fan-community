@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="login">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_ID = ?
+    		AND MEMBER_PWD = ?
+    		AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<entry key="insert">
+		INSERT INTO MEMBER VALUES 
+		(SEQ_MNO.NEXTVAL,
+		 	? , <!-- 팀번호 -->
+		 	? , <!-- 아이디 -->
+		 	? , <!-- 이름 -->
+		 	? , <!-- 비밀번호 -->
+		 	? , <!-- 이메일 -->
+		 	? , <!-- 폰 -->
+		 	? , <!-- 닉네임 -->
+		 	? , <!-- 젠더 -->
+		 	? , <!-- 주민번호 -->
+		 	? , <!-- 생년월일 -->
+		 	DEFAULT , <!-- 가입일 -->
+		 	'', <!-- 마지막로그인 -->
+		 	DEFAULT, <!-- 상태값 -->
+		 	''
+		 )
+	</entry>
+	
+	<entry key="insertImg">
+		INSERT INTO ATTACHMENT 
+		VALUES(SEQ_FNO.NEXTVAL,'',?,?,?,SYSDATE,DEFAULT,DEFAULT,'',SEQ_MNO.CURRVAL)
+	</entry>
+	
+	<entry key="idCheck">
+		SELECT COUNT(*) COUNT
+		FROM MEMBER
+		WHERE MEMBER_ID = ?
+			AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<entry key="update">
+		UPDATE MEMBER SET
+			MEMBER_NAME = ?,
+			NICKNAME = ?,
+			PHONE = ?,
+			EMAIL = ?,
+			TEAM_NO = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<entry key="updatePwd">
+		UPDATE MEMBER
+			SET MEMBER_PWD = ?
+		WHERE MEMBER_NO = ? AND MEMBER_PWD = ?
+	</entry>
+	
+	<entry key="delete">
+		UPDATE MEMBER
+			SET MEMBER_STATUS = 'N'
+		WHERE MEMBER_NO = ? AND MEMBER_PWD = ?
+	</entry>
+	
+	<entry key="selectAt">
+	SELECT FILE_NO ,CHANGE_NAME ,ORIGIN_NAME, FILE_PATH
+	FROM ATTACHMENT
+	WHERE MEMBER_NO = ? AND ATTACH_STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateAt">
+		UPDATE ATTACHMENT
+			SET ORIGIN_NAME = ?,
+				CHANGE_NAME = ?
+		WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAt">
+		INSERT INTO ATTACHMENT 
+		VALUES(SEQ_FNO.NEXTVAL,'',?,?,?,SYSDATE,DEFAULT,DEFAULT,'',SEQ_MNO.CURRVAL)
+	</entry>
+	
+	<entry key="deleteAt">
+		UPDATE ATTACHMENT
+			SET ATTACH_STATUS = 'N'
+		WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="selectMyBoard">	
+		SELECT *
+		FROM (
+		    SELECT 
+		        A.*,
+		        ROWNUM AS RNUM
+		    FROM (
+		        SELECT 
+		            C.CATEGORY_NO, 
+		            C.CATEGORY_NAME, 
+		            T.TEAM_NO, 
+		            L.LOCAL_NO,
+		            B.BOARD_NO, 
+		            B.BOARD_TITLE, 
+		            B.BOARD_CONTENT, 
+		            B.CREATE_DATE,
+		            AT.FILE_PATH, 
+		            AT.CHANGE_NAME
+		        FROM BOARD B
+		        LEFT JOIN CATEGORY C    ON B.CATEGORY_NO = C.CATEGORY_NO
+		        LEFT JOIN TEAM T        ON B.TEAM_NO     = T.TEAM_NO
+		        LEFT JOIN LOCAL L       ON B.LOCAL_NO    = L.LOCAL_NO
+		        LEFT JOIN ATTACHMENT AT ON B.BOARD_NO    = AT.BOARD_NO
+		        WHERE B.MEMBER_NO = ?
+		          AND B.BOARD_STATUS = 'Y'
+		    ) A
+		   
+		) 
+		WHERE RNUM BETWEEN ? AND ?    	
+	</entry>
+		
+	<entry key="selectListCount">
+		SELECT COUNT(*)
+			FROM BOARD
+		WHERE BOARD_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectMyReply">
+		SELECT *
+		FROM (
+		    SELECT 
+		        R.REPLY_NO,
+		        R.REPLY_CONTENT, 
+		        R.CREATE_DATE,
+		        R.REF_REPLY_NO,  
+		        M.MEMBER_NO, 
+		        M.NICKNAME, 
+		        R.BOARD_NO, 
+		        T.TEAM_NO, 
+		        C.CATEGORY_NO, 
+		        C.CATEGORY_NAME,
+		        L.LOCAL_NO,
+		        ROW_NUMBER() OVER (ORDER BY R.CREATE_DATE DESC) AS RN
+		    FROM 
+		        REPLY R
+		    LEFT JOIN MEMBER M ON R.MEMBER_NO = M.MEMBER_NO
+		    LEFT JOIN BOARD B ON R.BOARD_NO = B.BOARD_NO
+		    LEFT JOIN TEAM T ON B.TEAM_NO = T.TEAM_NO
+		    LEFT JOIN CATEGORY C ON B.CATEGORY_NO = C.CATEGORY_NO 
+		    LEFT JOIN LOCAL L ON B.LOCAL_NO = L.LOCAL_NO
+		    WHERE 
+		        M.MEMBER_NO = ?
+		        AND R.REPLY_STATUS = 'Y' AND B.BOARD_STATUS = 'Y'
+		)
+		WHERE RN BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectReplyListCount">
+		SELECT COUNT(*)
+			FROM REPLY
+		WHERE REPLY_STATUS = 'Y'
+	</entry>
+	
+	<entry key="findId">
+		SELECT MEMBER_ID, MEMBER_NAME, PHONE 
+		FROM MEMBER
+		WHERE MEMBER_NAME = ? AND PHONE = ?
+	</entry>
+	
+	
+	<entry key="findPwd">
+		SELECT MEMBER_NAME, MEMBER_ID, MEMBER_PWD, EMAIL 
+		FROM MEMBER 
+		WHERE MEMBER_NAME = ? AND MEMBER_ID = ? AND EMAIL = ?
+	</entry>	
+	
+	<!--  admin/member쪽에서 사용 없어지지 않게 주의!!  -->
+	<entry key="selectAdMember">
+		SELECT
+			M.MEMBER_NO,
+	        M.TEAM_NO,
+	        T.TEAM_NAME,
+	        M.MEMBER_ID,
+	        M.MEMBER_NAME,
+	        M.EMAIL,
+	        M.PHONE,
+	        M.NICKNAME,
+	        M.GENDER,
+	        SUBSTR(M.SSN,1,6) AS BIRTH, 
+	        M.CREATE_DATE,
+	        M.MEMBER_STATUS
+	     FROM MEMBER M
+		    LEFT JOIN TEAM T ON M.TEAM_NO = T.TEAM_NO
+		    WHERE M.MEMBER_NO = ?
+	</entry>
+	
+	<entry key="selectAdMemberList">
+	SELECT M.MEMBER_NO, M.TEAM_NO, T.TEAM_NAME, M.MEMBER_ID, M.MEMBER_NAME, M.EMAIL, M.PHONE, M.NICKNAME, M.MEMBER_STATUS,CREATE_DATE, SUBSTR(M.SSN,1,6) AS BIRTH, 
+		CASE SUBSTR(M.SSN, 7, 1)
+			WHEN '1' THEN '남'
+			WHEN '2' THEN '여'
+			WHEN '3' THEN '남'
+			WHEN '4' THEN '여'
+			ELSE '알수없음'
+		END AS GENDER
+	    FROM MEMBER M
+	    LEFT JOIN TEAM T ON M.TEAM_NO = T.TEAM_NO
+	    ORDER BY M.CREATE_DATE DESC
+	</entry>
+	
+	<entry key="selectAdMemberListCount">
+      SELECT COUNT(*)
+	    FROM MEMBER M
+	    LEFT JOIN TEAM T ON M.TEAM_NO = T.TEAM_NO
+	</entry>
+	
+	<entry key="selectFilteredAdMemberList">
+	 SELECT M.MEMBER_NO, M.TEAM_NO, T.TEAM_NAME, M.MEMBER_ID, M.MEMBER_NAME, M.EMAIL, M.PHONE, 
+		M.NICKNAME, M.MEMBER_STATUS, M.CREATE_DATE, SUBSTR(M.SSN,1,6) AS BIRTH, 
+		CASE SUBSTR(M.SSN, 7, 1)
+			WHEN '1' THEN '남'
+			WHEN '2' THEN '여'
+			WHEN '3' THEN '남'
+			WHEN '4' THEN '여'
+			ELSE '알수없음'
+		END AS GENDER
+	    FROM MEMBER M
+	    LEFT JOIN TEAM T ON M.TEAM_NO = T.TEAM_NO
+	    WHERE 1=1 
+	</entry>
+
+	<entry key="selectFilteredAdMemberListCount">
+		SELECT COUNT(*)
+	    FROM MEMBER M
+	    LEFT JOIN TEAM T ON M.TEAM_NO = T.TEAM_NO
+	    WHERE M.MEMBER_STATUS = NVL(?, M.MEMBER_STATUS)
+	      AND M.CREATE_DATE BETWEEN NVL(TO_DATE(?, 'YYYY-MM-DD'), M.CREATE_DATE)
+	                              AND NVL(TO_DATE(?, 'YYYY-MM-DD'), M.CREATE_DATE)
+	      AND (M.MEMBER_NAME LIKE ? OR M.MEMBER_ID LIKE ? OR T.TEAM_NAME LIKE ?)
+	</entry>
+	
+		<!-- 총 회원 수 조회 -->
+	<entry key="selectTotalMemberCount">
+	    SELECT COUNT(*) AS totalMemberCount
+	    FROM MEMBER
+	</entry>
+	
+	<!-- 활성 회원 수 조회 -->
+	<entry key="selectActiveMemberCount" >
+	    SELECT COUNT(*) AS activeMemberCount
+	    FROM MEMBER
+	    WHERE MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateMemberStatus">
+    	UPDATE MEMBER
+    	SET MEMBER_STATUS = ?
+    	WHERE MEMBER_NO = ?
+	</entry>
+</properties>

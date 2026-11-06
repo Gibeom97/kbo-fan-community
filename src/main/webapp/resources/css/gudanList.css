@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+.gudanListContainer {
+	font-family: Arial, sans-serif;
+	width: 1080px;
+	margin: 0 auto;
+	line-height: 1.5;
+	box-sizing: border-box;
+	display: flex;
+}
+
+/* 사이드바 영역 */
+.sidebar1 {
+	position: fixed;
+	width: 180px;
+	height: 100%;
+	box-sizing: border-box;
+	font-weight: bold;
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.side_title1 {
+	margin: 0px auto;
+    font-size: 22px;
+    text-align: center;
+}
+
+.side_content1 {
+	font-size: 17px;
+	padding: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.side_content1 a {
+	margin-bottom: 20px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 45px;
+	text-decoration: none;
+	color: black;
+}
+
+.side_content1 a:hover {
+	background-color: black;
+	color: white;
+}
+
+.insert {
+	text-align: right;
+}
+
+.insert a {
+	text-decoration: none;
+	font-size: 12px;
+	color: #fff;
+	background-color: #000;
+	padding: 4px 8px;
+	border-radius: 4px;
+}
+/* 메인 콘텐츠 영역 */
+.main-content {
+	flex: 1;
+	padding: 20px;
+	margin-left: 200px; /* 사이드바의 너비 + 간격 고려 */
+	background-color: #fff;
+	box-sizing: border-box;
+}
+
+.banner {
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+}
+
+.list-area {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.list-area > a{
+	text-decoration: none;	
+	display: block; /* 링크를 블록으로 설정 */
+	width: 100%; /* 카드 전체가 클릭 가능 */
+	height: 100%;
+	color: inherit; /* 부모 색상 상속 */
+}
+.card {
+	display: flex;
+	gap: 15px;
+	padding: 15px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+.card img {
+	width: 120px;
+	height: 80px;
+	border-radius: 5px;
+}
+
+.card-content {
+	flex-grow: 1;
+	pointer-events: auto; /* 클릭 가능 */
+}
+
+.card-content h3 {
+	margin: 0; font-size : 16px;
+	color: #333;
+	font-size: 16px;
+}
+
+.card-content p {
+	margin: 5px 0;
+	font-size: 14px;
+	color: #777;
+}
+
+

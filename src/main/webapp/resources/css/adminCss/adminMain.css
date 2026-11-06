@@ -1,0 +1,126 @@
+.header1 {
+    width: 996px;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.log-info {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    text-align: right;
+    font-size: 14px;
+    margin-left: 7px;
+}
+
+table {
+    width: 830px;
+    border-collapse: collapse;
+    margin: 0 auto;
+    border-radius: 3px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    border: none; /* 테두리 제거 */
+}
+
+thead {
+    background-color: rgb(230, 230, 250);
+    font-weight: bold;
+}
+
+th, td {
+    padding: 10px 15px;
+    border: 1px solid rgb(200, 200, 200); /* 셀 내부 선 유지 */
+}
+
+tbody tr {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer; /* 클릭 가능 표시 */
+}
+
+input[type="button"] {
+    background-color: rgb(100, 149, 237);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: rgb(72, 118, 230);
+}
+
+.table-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 3px; /* 표와의 간격 */
+    text-align: left;
+}
+
+.all-btn {
+    text-align: right;
+}
+
+.content-wrapper {
+    display: flex; /* 옆으로 나란히 배치 */
+    align-items: flex-start; /* 상단 정렬 */
+    gap: 30px; /* 두 요소 간 간격 */
+    justify-content: center; /* 중앙 정렬 */
+    width: 100%; /* 전체 화면 너비 */
+    max-width: 1080px; /* 최대 너비 */
+    margin: 0 auto; /* 화면 중앙 배치 */
+    box-sizing: border-box; /* 패딩 포함 */
+}
+
+.summary-container {
+    width: 180px; /* 고정 너비 */
+    background-color: rgb(230, 230, 250) !important; /* 밝은 배경색 */
+    color: black; /* 텍스트 색상 */
+    border: 2px solid rgb(200, 200, 200); /* 테두리 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 20px; /* 내부 여백 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    height: auto; /* 내용에 따라 높이 조정 */
+    display: flex; /* 플렉스박스 사용 */
+    flex-direction: column; /* 세로 정렬 */
+    justify-content: center; /* 수직 가운데 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    box-sizing: border-box;
+    margin-top: 100px; /* 위에서 더 아래로 내림 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.summary-container p {
+    margin: 15px 0; /* 각 줄 간격 균일화 */
+    font-weight: bold; /* 텍스트 강조 */
+    font-size: 14px; /* 텍스트 크기 */
+    display: flex; /* 점과 텍스트를 플렉스 정렬 */
+    align-items: center; /* 점과 텍스트 높이 정렬 */
+}
+
+.table-container {
+     flex: 1;  /* 나머지 공간 채움 */
+    background-color: #fff; /* 배경색 */
+    border-radius: 7px; /* 둥근 모서리 */
+    padding: 20px; /* 내부 여백 */
+    margin-top: 0; /* 상단 여백 제거 */
+    box-sizing: border-box;
+    width: 830px; /* 최대 너비 설정 */
+}
+
+.summary-container p::before {
+    content: "•"; /* 점 추가 */
+    margin-right: 8px; /* 점과 텍스트 간 간격 */
+    color: #333; /* 점 색상 */
+    font-size: 18px; /* 점 크기 */
+    vertical-align: middle; /* 점과 텍스트 높이 정렬 */
+}
+
+.summary-container .inline-text {
+    display: inline-flex; /* 한 줄 정렬 */
+    align-items: center; /* 높이 정렬 */
+    gap: 8px; /* 텍스트와 숫자 간 간격 */
+}

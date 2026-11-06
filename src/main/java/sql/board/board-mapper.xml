@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertGatherBoard">
+		INSERT INTO BOARD
+		VALUES (SEQ_BNO.NEXTVAL, ?, ?, '', ?, ?, ?, SYSDATE, '', DEFAULT, DEFAULT)
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT INTO ATTACHMENT
+		VALUES (SEQ_FNO.NEXTVAL, SEQ_BNO.CURRVAL, ?, ?, ?, DEFAULT, 1, DEFAULT, DEFAULT, '')
+	</entry>
+	
+	<entry key="newInsertAttachment">
+		INSERT INTO ATTACHMENT
+		VALUES (SEQ_FNO.NEXTVAL, ?, ?, ?, ?, DEFAULT, 1, DEFAULT, '', '')
+	</entry>
+	
+	<entry key="selectGatherList">
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, A.*
+      		  FROM (SELECT B.BOARD_NO, NICKNAME, C.CATEGORY_NO, C.CATEGORY_NAME, L.LOCAL_NO, L.LOCAL_NAME, B.BOARD_TITLE, B.BOARD_CONTENT, B.CREATE_DATE, B.BOARD_STATUS, B.VIEW_COUNT, AT.CHANGE_NAME, AT.FILE_LEVEL, AT.FILE_PATH, AT.ATTACH_STATUS
+            		FROM BOARD B
+            		JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+            		JOIN CATEGORY C ON B.CATEGORY_NO = C.CATEGORY_NO
+            		JOIN LOCAL L ON B.LOCAL_NO = L.LOCAL_NO
+            		LEFT JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO
+            		WHERE B.CATEGORY_NO = ? AND B.LOCAL_NO = ? AND B.BOARD_STATUS = 'Y'
+            		ORDER BY CREATE_DATE DESC) A)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectGatherListCount">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO
+		WHERE B.CATEGORY_NO = ? AND B.LOCAL_NO = ? AND B.BOARD_STATUS = 'Y' AND AT.FILE_LEVEL = 1
+	</entry>
+	
+	<entry key="selectGatherBoard">
+		SELECT B.BOARD_NO,  B.MEMBER_NO, NICKNAME, C.CATEGORY_NO, C.CATEGORY_NAME, L.LOCAL_NO, L.LOCAL_NAME, B.BOARD_TITLE, B.BOARD_CONTENT, B.CREATE_DATE, B.BOARD_STATUS, B.VIEW_COUNT, AT.ORIGIN_NAME, AT.CHANGE_NAME, AT.FILE_NO, AT.FILE_LEVEL, AT.FILE_PATH, AT.ATTACH_STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.CATEGORY_NO
+		JOIN LOCAL L ON B.LOCAL_NO = L.LOCAL_NO
+		LEFT JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO
+		WHERE B.BOARD_NO = ? AND B.BOARD_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectAttachmentList">
+		SELECT
+			FILE_NO,
+			CHANGE_NAME,
+			FILE_PATH,
+			ORIGIN_NAME,
+			FILE_LEVEL,
+			ATTACH_STATUS
+		FROM ATTACHMENT
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="deleteBoard">
+		UPDATE BOARD
+		SET BOARD_STATUS = 'N'
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="deleteAttachment">
+		UPDATE ATTACHMENT
+		SET ATTACH_STATUS = 'N'
+		WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="updateGatherBoard">
+		UPDATE BOARD
+		SET CATEGORY_NO = ?,
+    		LOCAL_NO = ?,
+    		BOARD_TITLE = ?,
+    		BOARD_CONTENT = ?,
+    		UPDATE_DATE = SYSDATE
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="insertReply">
+		INSERT INTO REPLY
+		VALUES (SEQ_REPLY_NO.NEXTVAL, ?, ?, ?, DEFAULT, '', DEFAULT, ?)
+	</entry>
+	
+	<entry key="replyList">
+		SELECT REPLY_NO, BOARD_NO, R.MEMBER_NO, NICKNAME, REPLY_CONTENT, R.CREATE_DATE, REF_REPLY_NO
+		FROM REPLY R
+		JOIN MEMBER M ON R.MEMBER_NO = M.MEMBER_NO
+		WHERE BOARD_NO = ? AND REPLY_STATUS = 'Y'
+		ORDER BY R.CREATE_DATE DESC
+	</entry>
+	
+	<entry key="deleteReply">
+		UPDATE REPLY
+		SET REPLY_STATUS = 'N'
+		WHERE REPLY_NO = ?
+	</entry>
+	
+	<entry key="updateReply">
+		UPDATE REPLY
+		SET REPLY_CONTENT = ?
+		WHERE REPLY_NO = ? 
+	</entry>
+	
+	<entry key="checkLike">
+		SELECT *
+		FROM LIKES
+		WHERE MEMBER_NO = ?  AND BOARD_NO = ?
+	</entry>
+	
+	<entry key="insertLike">
+		INSERT INTO LIKES
+		VALUES (?, ?)
+	</entry>
+	
+	<entry key="deleteLike">
+		DELETE FROM LIKES
+		WHERE MEMBER_NO = ? AND BOARD_NO = ? 
+	</entry>
+	
+	<entry key="countLike">
+		SELECT COUNT(*) COUNT
+		FROM LIKES
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="checkDislike">
+		SELECT *
+		FROM DISLIKES
+		WHERE MEMBER_NO = ?  AND BOARD_NO = ?
+	</entry>
+	
+	<entry key="insertDislike">
+		INSERT INTO DISLIKES
+		VALUES (?, ?)
+	</entry>
+	
+		<entry key="deleteDislike">
+		DELETE FROM DISLIKES
+		WHERE MEMBER_NO = ? AND BOARD_NO = ? 
+	</entry>
+	
+	<entry key="countDislike">
+		SELECT COUNT(*) COUNT
+		FROM DISLIKES
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="updateAttachment">
+		UPDATE ATTACHMENT
+		SET ORIGIN_NAME = ?,
+			CHANGE_NAME = ?,
+			UPLOAD_DATE = DEFAULT,
+			ATTACH_STATUS = 'Y'
+		WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertGudanBoard">
+		INSERT INTO BOARD (BOARD_NO, MEMBER_NO, CATEGORY_NO, TEAM_NO, LOCAL_NO, BOARD_TITLE, BOARD_CONTENT, CREATE_DATE, UPDATE_DATE, BOARD_STATUS, VIEW_COUNT)
+		VALUES (SEQ_BNO.NEXTVAL, ?, DEFAULT, ?, DEFAULT, ?, ?, SYSDATE, DEFAULT, DEFAULT, DEFAULT)
+	</entry>
+	
+	<entry key="updateGudanBoard">
+	    UPDATE BOARD
+	    SET TEAM_NO = ?,
+	        BOARD_TITLE = ?,
+	        BOARD_CONTENT = ?,
+	        UPDATE_DATE = SYSDATE
+	    WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="selectGudanBoard">
+		SELECT B.BOARD_NO,  B.MEMBER_NO, M.MEMBER_NAME, M.NICKNAME, T.TEAM_NO, T.TEAM_NAME, 
+			   B.BOARD_TITLE, B.BOARD_CONTENT, B.CREATE_DATE, B.BOARD_STATUS, 
+			   B.VIEW_COUNT, 
+			   AT.FILE_NO, AT.CHANGE_NAME, AT.ORIGIN_NAME, AT.FILE_LEVEL, AT.FILE_PATH, 
+			   NVL(AT.ATTACH_STATUS, 'N') AS ATTACH_STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+		JOIN TEAM T ON B.TEAM_NO = T.TEAM_NO
+		LEFT JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO AND AT.FILE_LEVEL = 1
+		WHERE B.TEAM_NO = ? 
+      	  AND B.BOARD_NO = ? 
+      	  AND B.BOARD_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectReviewListCount">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO
+		WHERE B.CATEGORY_NO = ? AND B.BOARD_STATUS = 'Y' AND AT.FILE_LEVEL = 1
+	</entry>
+	
+	<entry key="selectReviewList">
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, A.*
+      		  FROM (SELECT B.BOARD_NO, NICKNAME, C.CATEGORY_NO, C.CATEGORY_NAME, B.BOARD_TITLE, B.BOARD_CONTENT, B.CREATE_DATE, B.BOARD_STATUS, B.VIEW_COUNT, AT.CHANGE_NAME, AT.FILE_LEVEL, AT.FILE_PATH, AT.ATTACH_STATUS
+            		FROM BOARD B
+            		JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+            		JOIN CATEGORY C ON B.CATEGORY_NO = C.CATEGORY_NO
+            		LEFT JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO
+            		WHERE B.CATEGORY_NO = ? AND B.BOARD_STATUS = 'Y'
+            		ORDER BY CREATE_DATE DESC) A)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="insertReviewBoard">
+	    INSERT INTO BOARD
+	    VALUES (SEQ_BNO.NEXTVAL, ?, ?, '', '', ?, ?, SYSDATE, '', DEFAULT, DEFAULT)
+	</entry>
+	
+	<entry key="insertReviewAttachment">
+		INSERT INTO ATTACHMENT
+		VALUES (SEQ_FNO.NEXTVAL, SEQ_BNO.CURRVAL, ?, ?, ?, DEFAULT, 1, DEFAULT, DEFAULT, '')
+	</entry>
+	
+	<entry key="selectReviewBoard">
+		SELECT B.BOARD_NO, B.MEMBER_NO, NICKNAME, C.CATEGORY_NO, C.CATEGORY_NAME, B.BOARD_TITLE, B.BOARD_CONTENT, B.CREATE_DATE, B.BOARD_STATUS, B.VIEW_COUNT, AT.ORIGIN_NAME, AT.CHANGE_NAME, AT.FILE_NO, AT.FILE_LEVEL, AT.FILE_PATH, AT.ATTACH_STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.CATEGORY_NO
+		LEFT JOIN ATTACHMENT AT ON B.BOARD_NO = AT.BOARD_NO
+		WHERE B.BOARD_NO = ? AND B.BOARD_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectReviewAttachmentList">
+		SELECT FILE_NO, CHANGE_NAME, FILE_PATH, ORIGIN_NAME, FILE_LEVEL, ATTACH_STATUS
+		FROM ATTACHMENT
+		WHERE BOARD_NO = ? AND ATTACH_STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateReviewBoard">
+		UPDATE BOARD
+		SET CATEGORY_NO = ?,
+    		BOARD_TITLE = ?,
+    		BOARD_CONTENT = ?,
+    		UPDATE_DATE = SYSDATE
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="increaseCount">
+		UPDATE BOARD
+		SET VIEW_COUNT = VIEW_COUNT + 1
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<entry key="checkMember">
+		SELECT MEMBER_NO
+		FROM BOARD
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 신고 여부 확인 -->
+	<entry key="checkReportExists">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE REF_TYPE = 'B'
+		AND REF_NO = ?
+		AND MEMBER_NO = ?
+	</entry>
+
+	<!-- 게시글 신고 -->
+	<entry key="insertReport">
+		INSERT INTO REPORT (REF_TYPE, REF_NO, MEMBER_NO, REPORT_STATUS, REPORT_COUNT)
+		VALUES ('B', ?, ?, 'Y', 1)
+	</entry>
+
+	<!-- 게시글 신고 횟수 조회 -->
+	<entry key="getReportCount">
+		SELECT COUNT(*) 
+		FROM REPORT R
+		JOIN BOARD B ON (R.REF_NO = B.BOARD_NO)
+		WHERE R.REF_TYPE = 'B'
+		AND B.MEMBER_NO = ?
+		AND R.REPORT_STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateMemberStatus">
+		UPDATE MEMBER 
+		SET MEMBER_STATUS = 'N',
+			UPDATE_DATE = SYSDATE
+		WHERE MEMBER_NO = ?
+	</entry>
+
+<entry key="selectTopReviews">
+		SELECT *
+		FROM (
+			SELECT B.BOARD_NO,
+				B.BOARD_TITLE,
+				B.VIEW_COUNT,
+				M.NICKNAME
+			FROM BOARD B
+			JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+			WHERE B.BOARD_STATUS = 'Y'
+			AND B.CATEGORY_NO = ?
+			ORDER BY B.VIEW_COUNT DESC
+		)
+		WHERE ROWNUM &lt;= 3
+</entry>
+	
+	<entry key="selectReviewListByCategory">
+		SELECT *
+		FROM (
+			SELECT ROWNUM RNUM, A.*
+			FROM (
+				SELECT B.BOARD_NO, B.BOARD_TITLE, B.VIEW_COUNT,
+					   AT.FILE_PATH, AT.CHANGE_NAME
+				FROM BOARD B
+				LEFT JOIN ATTACHMENT AT ON (B.BOARD_NO = AT.BOARD_NO)
+				WHERE B.BOARD_STATUS = 'Y'
+				  AND B.CATEGORY_NO = ?
+				  AND (AT.ATTACH_STATUS = 'Y' OR AT.ATTACH_STATUS IS NULL)
+				  AND (AT.FILE_LEVEL = 1 OR AT.FILE_LEVEL IS NULL)
+				ORDER BY B.BOARD_NO DESC  -- 최신순 정렬
+			) A
+		)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+
+	<entry key="selectListCountByCategory">
+	    SELECT COUNT(*)
+	    FROM BOARD
+	    WHERE CATEGORY_NO = ?
+	      AND BOARD_STATUS = 'Y'
+	</entry>
+	
+	<!-- 신고 여부 확인 -->
+	<entry key="checkReplyReportExists">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE REF_TYPE = 'R'
+		AND REF_NO = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
+	<!-- 댓글 신고 -->
+	<entry key="insertReplyReport">
+		INSERT INTO REPORT (REF_TYPE, REF_NO, MEMBER_NO, REPORT_STATUS, REPORT_COUNT)
+		VALUES ('R', ?, ?, 'Y', 1)
+	</entry>
+	
+	<!-- 신고 횟수 업데이트 -->
+	<entry key="updateReportCount">
+		UPDATE REPORT
+		SET REPORT_COUNT = REPORT_COUNT + 1
+		WHERE REF_TYPE = ?
+		AND REF_NO = ?
+	</entry>
+	
+	<!-- 댓글 신고 횟수 조회 -->
+	<entry key="getReplyReportCount">
+		SELECT COUNT(*) 
+		FROM REPORT R
+		JOIN REPLY RP ON (R.REF_NO = RP.REPLY_NO)
+		WHERE R.REF_TYPE = 'R'
+		AND RP.MEMBER_NO = ?
+		AND R.REPORT_STATUS = 'Y'
+	</entry>
+</properties>

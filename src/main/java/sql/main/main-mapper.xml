@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectMainGatherList">
+		SELECT *
+		FROM( SELECT ROWNUM RNUM, A.*
+      		  FROM(SELECT B.BOARD_NO, M.MEMBER_NO, NICKNAME, C.CATEGORY_NO, C.CATEGORY_NAME, 
+      		  	   	 	  L.LOCAL_NO, L.LOCAL_NAME, B.BOARD_TITLE, B.BOARD_CONTENT, 
+      		  	   	 	  B.CREATE_DATE, B.BOARD_STATUS, B.VIEW_COUNT, 
+      		  	   	 	  AT.FILE_NO, AT.CHANGE_NAME, AT.FILE_LEVEL, AT.FILE_PATH, AT.ATTACH_STATUS
+              FROM BOARD B
+              JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+              JOIN CATEGORY C ON B.CATEGORY_NO = C.CATEGORY_NO
+              JOIN LOCAL L ON B.LOCAL_NO = L.LOCAL_NO
+              LEFT JOIN ATTACHMENT AT ON M.MEMBER_NO = AT.MEMBER_NO
+              WHERE B.BOARD_STATUS = 'Y'
+              ORDER BY CREATE_DATE DESC) A)
+		WHERE RNUM BETWEEN 1 AND 6
+	</entry>
+	
+	<entry key="selectMainPopList">
+		SELECT F.BOARD_NO, F.BOARD_TITLE, F.CATEGORY_NAME, F.MEMBER_NO, 
+			   F.NICKNAME, F.FILE_NO, F.FILE_PATH, F.CHANGE_NAME
+		FROM (
+    		SELECT *
+    		FROM BOARD B
+    		JOIN CATEGORY C ON C.CATEGORY_NO = B.CATEGORY_NO
+    		JOIN MEMBER M ON M.MEMBER_NO = B.MEMBER_NO
+    		JOIN ATTACHMENT A ON A.BOARD_NO = B.BOARD_NO
+    		JOIN (
+        		SELECT BOARD_NO, COUNT(MEMBER_NO) AS COUNT
+        		FROM LIKES
+        		GROUP BY BOARD_NO
+    		) A ON B.BOARD_NO = A.BOARD_NO
+    		WHERE C.CATEGORY_NO IN (1,2,3,4) AND BOARD_STATUS = 'Y' AND FILE_LEVEL = 1 
+    			  AND ATTACH_STATUS = 'Y'
+    		ORDER BY A.COUNT DESC
+    		) F
+		WHERE ROWNUM &lt; 7
+	</entry>
+</properties>

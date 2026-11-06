@@ -1,0 +1,116 @@
+/* 회원용 문의 목록 스타일*/
+.total-inquiry-container {
+	padding: 0;
+	font-family: Arail, sans-serif;
+	max-width: 1080px;
+	display: flex;
+	margin: 0 auto;
+}
+
+.memInquiry-title {
+	padding-bottom: 6px;
+}
+
+.inquiry-list-container {
+	margin-top: 20px;
+	margin-left: 40px;
+	width: 900px;
+	box-sizing: border-box;
+	postition: relative;
+}
+
+.inquiry-table {
+	margin-left: 30px;
+	width: 100%;
+	border-collapse: collapse;
+	justify-content: center;
+	margin: 0 auto; /* 표를 수평 중앙 정렬 */
+}
+
+.inquiry-table th {
+	text-align: center;
+	padding: 10px 20px;
+	font-weight: bold;
+	background-color: #f4f4f4;
+	height: 50px;
+}
+
+.inquiry-table td {
+	text-align: center;
+	padding: 10px 20px;
+	border-top: 1px solid #ddd; /* 위 선만 표시 */
+	border-bottom: 1px solid #ddd; /* 아래 선만 표시 */
+	height: 50px;
+}
+
+.inquiry-table td:first-child, .inquiry-table td:last-child {
+	border-left: none; /* 왼쪽 선 제거 */
+	border-right: none; /* 오른쪽 선 제거 */
+}
+
+.inquiry-table tr:hover {
+	background-color: #f9f9f9;
+}
+
+.clickable-title {
+	color: blue;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* 사이드바 스타일 */
+.myPagesidebar {
+	height: 100vh;
+	color: #fff;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	width: 180px;
+}
+
+.sidebar_section1 {
+	width: 180px;
+	box-sizing: border-box;
+	font-weight: bold;
+	height: 300px;
+	margin-top: 50px;
+	display: flex;
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+}
+
+.sidebar1 {
+	width: 180px;
+}
+
+.side_title1 {
+	font-size: 22px;
+	padding: 10px;
+	padding-left: 40px;
+}
+
+.side_content1 {
+	font-size: 17px;
+	padding: 10px;
+	text-align: center;
+}
+
+.side_content1 a {
+	margin-bottom: 20px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+	height: 55px;
+}
+
+.side_content1 a {
+	text-decoration: none;
+	color: black;
+}
+
+.side_content1 a:hover {
+	background-color: black;
+	color: white;
+}

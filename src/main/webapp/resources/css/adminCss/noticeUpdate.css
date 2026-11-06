@@ -1,0 +1,85 @@
+/* 공지사항 수정 페이지 스타일 */
+
+#noticeLevel{
+	width : 100px;
+	text-align: center;
+	height : 25px;
+	border-radius: 3px;
+}
+
+
+#noticeStatus{
+	width : 100px;
+	text-align: center;
+	height : 25px;
+	border-radius: 3px;
+}
+
+.container {
+	max-width: 1080px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	font-family : Arail, sans-serif;
+}
+
+h2 {
+	font-weight: bold;
+	padding-top : 4px;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: block;
+}
+
+input[type="text"], textarea {
+	width: 1050px;
+	background-color: #e6e6fa;
+	font-family: Arial, sans-serif;
+    font-size : 17px;
+    padding : 15px;
+    margin-top: 5px;
+    border : none;
+    border-radius: 3px;
+}
+
+textarea {
+	resize: none;
+	height: 250px;
+}
+
+input[type="submit"] {
+	background-color: rgb(100, 149, 237);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 20px;
+	display: block;
+	margin-left: auto; /* 중앙 정렬 */
+	margin-right: auto; /* 중앙 정렬 */
+	width: 100px;
+}
+
+input[type="submit"]:hover {
+	background-color: rgb(72, 118, 230);
+}
+
+.inline-group {
+	width : 1080px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.inline-group select {
+	width: 100%;
+	padding: 4px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}

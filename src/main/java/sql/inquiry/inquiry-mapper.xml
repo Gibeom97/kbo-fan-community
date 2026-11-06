@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectInquiryList">
+		SELECT *
+		FROM INQUIRY
+		JOIN MEMBER USING (MEMBER_ID)
+		ORDER BY INQUIRY_NO DESC
+	</entry>
+	
+	<entry key="insertInquiry">
+	INSERT INTO INQUIRY
+	(INQUIRY_NO, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_STATUS, MEMBER_NO)
+	VALUES (SEQ_INO.NEXTVAL, ? , ?, DEFAULT, ?)
+	
+	</entry>
+
+	<entry key="updateInquiry">
+	    UPDATE INQUIRY
+	    SET INQUIRY_STATUS = ?, INQUIRY_ANSWER = ?
+	    WHERE INQUIRY_NO = ?
+	</entry>
+	
+	<entry key="selectAdInquiryList">
+	    SELECT 
+	        I.INQUIRY_NO, 
+	        M.MEMBER_ID, 
+	        I.INQUIRY_TITLE, 
+	        I.CREATE_DATE,  
+	        I.INQUIRY_STATUS 
+	    FROM INQUIRY I
+	    LEFT JOIN MEMBER M ON (I.MEMBER_NO= M.MEMBER_NO)
+	    ORDER BY I.INQUIRY_NO DESC
+	</entry>
+	
+	<entry key="selectInquiryUpdate">
+	    SELECT 
+	        I.INQUIRY_NO, 
+	        M.MEMBER_ID, 
+	        I.INQUIRY_TITLE, 
+	        I.INQUIRY_CONTENT, 
+	        I.CREATE_DATE,  
+	        I.INQUIRY_STATUS, 
+	        I.INQUIRY_ANSWER
+	    FROM INQUIRY I
+	    LEFT JOIN MEMBER M ON I.MEMBER_NO = M.MEMBER_NO
+	    WHERE I.INQUIRY_NO = ?
+	</entry>
+	
+	<entry key="selectMemInquiryList">
+	    SELECT 
+	    	ROW_NUMBER() OVER (PARTITION BY MEMBER_NO ORDER BY CREATE_DATE DESC) AS NO,
+	        INQUIRY_NO,
+        INQUIRY_TITLE,
+         CREATE_DATE,
+        INQUIRY_STATUS
+    FROM INQUIRY
+    WHERE MEMBER_NO = ? OR MEMBER_NO = NULL
+    ORDER BY CREATE_DATE DESC
+	</entry>
+	
+	<entry key="countPendingInquiries">
+    SELECT COUNT(*) 
+    FROM INQUIRY
+    WHERE INQUIRY_STATUS = ?
+	</entry>
+	
+	<entry key="selectFilteredAdInquiryList">
+	    SELECT 
+    I.INQUIRY_NO, 
+    M.MEMBER_ID, 
+    I.INQUIRY_TITLE, 
+    I.CREATE_DATE, 
+    I.INQUIRY_STATUS
+FROM INQUIRY I
+LEFT JOIN MEMBER M ON I.MEMBER_NO = M.MEMBER_NO
+WHERE (I.INQUIRY_TITLE LIKE '%' || ? || '%' OR ? IS NULL OR ? = '')
+  AND (I.INQUIRY_STATUS = ? OR ? IS NULL OR ? = 'Z')
+  AND (I.CREATE_DATE BETWEEN TO_DATE(?, 'YYYY-MM-DD') AND TO_DATE(?, 'YYYY-MM-DD') OR (? IS NULL AND ? IS NULL))
+ORDER BY I.INQUIRY_NO DESC
+	</entry>
+
+	<entry key="selectFilteredAdInquiryListCount">
+	    SELECT 
+	        COUNT(*)
+	    FROM INQUIRY I
+LEFT JOIN MEMBER M ON I.MEMBER_NO = M.MEMBER_NO
+WHERE (I.INQUIRY_TITLE LIKE '%' || ? || '%' OR ? IS NULL OR ? = '')
+  AND (I.INQUIRY_STATUS = ? OR ? IS NULL OR ? = 'Z')
+  AND (I.CREATE_DATE BETWEEN TO_DATE(?, 'YYYY-MM-DD') AND TO_DATE(?, 'YYYY-MM-DD') OR (? IS NULL AND ? IS NULL))
+
+	</entry>
+
+
+	
+	<entry key="selectAdInquiryListCount">
+		SELECT COUNT(*)
+		FROM INQUIRY
+	</entry>
+	
+</properties>

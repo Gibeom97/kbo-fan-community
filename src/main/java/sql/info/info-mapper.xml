@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectNewsList">
+		SELECT A.*
+		FROM (SELECT HREF, NEWS_IMG, NEWS_TITLE, PRESS, CREATE_DATE
+      		  FROM NEWS
+      		  WHERE HOMEPAGE_NO = 1
+      		  ORDER BY CREATE_DATE DESC) A
+		 WHERE ROWNUM &lt;= 5
+	</entry>
+	
+	<entry key="selectCardNewsList">
+		SELECT A.*
+		FROM (SELECT HREF, NEWS_IMG, NEWS_TITLE, PRESS, CREATE_DATE
+      		  FROM NEWS
+      		  WHERE HOMEPAGE_NO = 2
+      		  ORDER BY NEWS_NO DESC) A
+		 WHERE ROWNUM &lt;= 6
+	</entry>
+	
+	<entry key="insertNews">
+		INSERT INTO NEWS
+		VALUES(SEQ_NEWS_NO.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?)
+	</entry>
+</properties>

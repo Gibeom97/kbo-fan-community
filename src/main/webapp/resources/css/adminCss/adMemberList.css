@@ -1,0 +1,70 @@
+.adMember-list {
+	margin: 0 auto;
+	width: 1080px;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.adMember-title {
+	font-weight: bold;
+	margin: 0 0 20px 290px;
+	text-align: left; /* 왼쪽 정렬 */
+	margin: 0; /* 상단 여백 제거 */
+	padding: 0 0 10px 0; /* 아래 간격만 추가 */
+}
+
+#list-area {
+	width: 1030px;
+	background-color: rgb(216, 218, 245);
+	margin: 0 auto;
+	padding: 25px;
+	border-radius: 8px; /* 모서리 둥글게 */
+}
+
+/* 테이블 스타일 */
+table {
+	width: 1080px;
+	border-collapse: collapse;
+	margin: 0 auto;
+	border-radius: 3px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	overflow: hidden;
+}
+
+thead {
+	background-color: rgb(230, 230, 250);
+	font-weight: bold;
+}
+
+th, td {
+	padding: 10px 15px;
+	border: 1px solid rgb(200, 200, 200); /* 선 색상  */
+}
+
+tbody tr {
+	background-color: rgb(255, 255, 255);
+	cursor: pointer; /* 클릭 가능 표시 */
+}
+
+tbody tr:hover {
+	background-color: rgb(245, 245, 255);
+}
+
+input[type="button"] {
+	background-color: rgb(100, 149, 237);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+input[type="button"]:hover {
+	background-color: rgb(72, 118, 230);
+}
+
+.btn2 {
+	text-align: right;
+	margin-bottom: 0px; /* 버튼과 표 간격 */
+}

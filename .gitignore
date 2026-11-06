@@ -1,0 +1,16 @@
+# Eclipse 빌드 결과
+src/main/webapp/WEB-INF/classes/
+bin/
+build/
+
+# 업로드·크롤링 파일 (저작권·개인정보)
+src/main/webapp/upload/
+src/main/webapp/resources/news/
+src/main/webapp/resources/teamImg/
+
+# 크롬 드라이버 (각자 설치)
+driver/
+
+# OS
+.DS_Store
+Thumbs.db

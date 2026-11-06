@@ -1,0 +1,199 @@
+.enrollcontainer {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	display: flex;
+	max-width: 1080px; /* 최대 너비를 제한 */
+	margin: 0 auto; /* 화면 가운데 정렬 */
+	padding: 0;
+	box-sizing: border-box; 
+	
+}
+
+/* 사이드바 스타일 */
+.sidebar_section1 {
+    width: 180px;
+	box-sizing: border-box;
+	font-weight: bold;
+    height: 300px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+.sidebar1 {
+    width: 180px;
+}
+
+.side_title1 {
+    font-size: 22px;
+    padding: 10px;
+    padding-left: 40px;
+}
+
+.side_content1 {
+    font-size: 17px;
+    padding: 10px;
+    text-align: center;
+}
+
+.side_content1 a{
+    margin-bottom: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    height: 55px;
+}
+
+.side_content1 a {
+    text-decoration: none;
+    color: black;
+}
+
+.side_content1 a:hover {
+	background-color: black;
+	color: white;
+}
+
+/* 메인 콘텐츠 스타일 */
+.enrollcontent {
+	background-color: #fff;
+	flex: 1;
+	padding: 30px;
+	
+	width: 900px;
+	box-sizing: border-box;
+}
+
+.profile-section {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.profile-section img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 1px solid #ccc;
+}
+
+.profile-section button {
+	margin: 5px;
+	padding: 5px 10px;
+}
+
+.form-section {
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+	
+}
+
+.form-group {
+	flex: 1 1 calc(50% - 20px);
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.form-group input, .form-group select {
+	width: 332px;
+	padding: 8px;
+	box-sizing: border-box;
+}
+
+.team-header1 {
+	box-sizing: border-box;
+	font-size: 22px;
+	margin-left:30px;
+	margin-bottom:15px;
+}
+
+.team-group {
+	border: 1px solid #ccc;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	
+	margin-left : 30px;
+	width:750px;
+	text-align: center;
+}
+
+.team-group label {
+	margin-right: 10px;
+}
+
+.update-button {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.update-button button, #uploadButton, #deleteButton {
+	background-color: #78A778;
+	color: #fff;
+	padding: 5px 10px;
+	border: none;
+	cursor: pointer;
+	margin: 5px;
+	border-radius: 3px;
+	height: 30px;
+}
+
+#custom-domain {
+	width: 160px; /* 도메인 입력 필드 너비 */
+	box-sizing: border-box;
+	margin-left:206px;
+	
+}
+
+#email, #email-domain{
+	width: 150px; /* 너비를 조정 */
+	padding: 8px;
+	box-sizing: border-box;
+	margin-left: 30px;
+}
+#email-domain{
+	margin-left:0px;
+	width:160px;
+}
+
+span {
+	margin: 0;
+	font-size: 16px; /* @ 기호 크기 */
+}
+
+.form-group {
+	position: relative;
+}
+
+#memberId {
+	width: 332px; /* 입력란 가로 길이를 부모에 맞춤 */
+	padding-right: 100px; /* 버튼 공간 확보 */
+	box-sizing: border-box;
+}
+
+#duplicate-check-btn {
+	position: absolute;
+    right: 40px; /* 입력란 오른쪽 여백 */
+    top: 66%; /* 입력란 높이의 50% 지점 */
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
+    padding: 2px 8px; /* 버튼 내부 여백 */
+    font-size: 12px; /* 글자 크기 줄이기 */
+    height: 40%; /* 입력란 높이의 70% */
+    line-height: normal; /* 텍스트 줄 간격 조정 */
+    cursor: pointer;
+     border: 1px solid #fff; 
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    background-color: #78A778;
+    color: #fff;
+}
+/*회원가입 끝*/

@@ -1,0 +1,297 @@
+/* 전체 컨테이너 */
+.container {
+	font-family: Arial, sans-serif;
+	width: 1080px;
+	margin: 0 auto;
+	line-height: 1.5;
+	box-sizing: border-box;
+	display: flex;
+}
+
+/* 뉴스 컨테이너  */
+#news_container {
+	width: 900px;
+	margin: 0 auto;
+	padding: 30px;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+.news_href {
+	display: flex;
+	margin: 20px 0px 5px 10px;
+	font-weight: bold;
+}
+
+.news_href div {
+	font-size: 20px;
+	color: black;
+}
+
+.news_href a {
+	margin-left: 10px;
+	text-decoration: none;
+	color: blue;
+	display: flex;
+	align-items: center;
+}
+
+/* 사이드바 영역 */
+.sidebar_section1 {
+	width: 180px;
+	box-sizing: border-box;
+	font-weight: bold;
+	height: 200px;
+	margin-top: 50px;
+	display: flex;
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+}
+
+.sidebar1 {
+	position: fixed;
+	width: 180px;
+}
+
+.side_title1 {
+	margin: 0px auto;
+    font-size: 22px;
+    text-align: center;
+}
+
+.side_content1 {
+	font-size: 17px;
+	padding: 10px;
+	text-align: center;
+}
+
+.side_content1 a {
+	margin-bottom: 20px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: center; /* 수직 중앙 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+	height: 45px;
+}
+
+.side_content1 a {
+	text-decoration: none;
+	color: black;
+}
+
+.side_content1 a:hover {
+	background-color: black;
+	color: white;
+}
+
+/* 섹션 1: 메인 뉴스 & 사이드 뉴스 */
+.main_section {
+	display: flex;
+	margin-bottom: 30px;
+	border-radius: 15px;
+}
+
+.main_news {
+	width: 60%;
+	box-sizing: border-box;
+	border-radius: 15px;
+}
+
+.main_news a {
+	text-decoration: none;
+	color: black;
+}
+
+.main_news_img {
+	border-radius: 15px;
+	box-sizing: border-box;
+	width: 100%;
+	height: 250px;
+}
+
+.main_news_img>img {
+	width: 100%; /* 부모 너비에 맞춤 */
+	height: 100%; /* 부모 높이에 맞춤 */
+	object-fit: cover; /* 이미지 비율을 유지하면서 영역 채움 */
+	border-radius: 15px;
+}
+
+.main_news_info {
+	padding-top: 15px;
+}
+
+.main_news_title {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.main_news_press {
+	font-size: 14px;
+	color: rgb(136, 136, 136);
+	font-weight: bold;
+}
+
+.side_news {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between; /* 요소 간 간격 균등 분배 */
+	margin-left: 10px;
+}
+
+.side_news_section {
+	display: flex;
+}
+
+.side_news>a {
+	border-radius: 15px;
+	color: black;
+	text-decoration: none;
+}
+
+.side_news_img>img {
+	width: 120px;
+	heigth: 120px;
+	height: auto;
+	border-radius: 15px;
+}
+
+.side_news_title {
+	margin-left: 10px;
+	margin-right: 5px;
+	font-size: 13px;
+	overflow: hidden; /* 넘치는 내용 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 부분 ...으로 표시 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 원하는 라인수 */
+    -webkit-box-orient: vertical;
+}
+
+.side_news_press {
+	margin-left: 10px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 11px;
+	color: rgb(136, 136, 136);
+}
+
+/* 섹션 2: 뉴스 리스트 */
+.second_section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+	font-weight: bold;
+	box-sizing: border-box;
+	margin-bottom: 30px;
+}
+
+/* 섹션 3: 많이 본 뉴스 & 선수 동향 */
+.section3 {
+	display: flex;
+	gap: 20px;
+}
+
+.popular-news {
+	flex: 1;
+	background-color: white;
+	padding: 10px;
+}
+
+.player-trends {
+	flex: 1;
+	background-color: white;
+	padding: 10px;
+}
+
+/* 공통 스타일 */
+h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.popular-news ul, .player-trends ul {
+	list-style: none;
+	padding: 0;
+}
+
+.popular-news li, .player-trends li {
+	margin-bottom: 5px;
+}
+
+.popular-news li span, .player-trends li span {
+	font-size: 14px;
+}
+
+/* 뉴스 그리드 스타일 */
+.news-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* 3열 설정 */
+	grid-template-rows: repeat(2, auto); /* 2행 설정 */
+	grid-gap: 20px; /* 항목 간격 */
+	padding: 20px;
+	box-sizing: border-box;
+	width: 900px;
+	margin: 0px auto;
+}
+
+/* 각 뉴스 아이템 스타일 */
+.news-item {
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	border-radius: 15px;
+	padding: 15px;
+}
+
+.card_anchor {
+	text-decoration: none;
+	color: black;
+	display: flex;
+}
+
+/* 뉴스 이미지 */
+.news-image {
+	background: #e0e0e0;
+	flex-shrink: 0;
+	width: 150px;
+	height: 100px;
+	overflow: hidden; /* 넘치는 부분 숨기기 */
+}
+
+.news-image img {
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	box-sizing: border-box;
+	object-fit: cover; /* 이미지 비율을 유지하며 요소에 꽉 차게 */
+}
+
+/* 뉴스 내용 */
+.news-content {
+	padding: 10px 15px;
+}
+
+.card_title {
+	font-size: 16px;
+	width: 208px; /* text-overflow 사용을 위해 반드시 가로길이 지정 필요 */
+	overflow: hidden; /* 넘치는 내용 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 부분 ...으로 표시 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 원하는 라인수 */
+    -webkit-box-orient: vertical;
+}
+
+/* 뉴스 하단 정보 */
+.news-footer {
+	font-size: 12px;
+	color: #999;
+	gap: 10px;
+	display: flex;
+}
+
+.cardnews_press {
+	font-size: 12px;
+}

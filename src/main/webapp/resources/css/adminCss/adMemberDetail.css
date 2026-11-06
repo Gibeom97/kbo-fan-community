@@ -1,0 +1,109 @@
+.total-memDetail-container {
+	margin: 0 auto;
+	width: 1080px;
+	box-sizing: border-box;
+	position: relative;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	width: 1030px;
+	margin: 0px auto;
+	background-color: rgb(230, 230, 250);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	font-weight: bold;
+}
+
+.info-row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.info-row label {
+	font-size: large;
+	font-weight: bold;
+	width: 150px;
+	margin-right: 10px;
+	margin-left: 35px;
+	margin-top: 6px;
+}
+
+.info-row>div {
+	width: 250px;
+	height: 35px;
+	text-align: center;
+	background-color: white;
+	border-radius: 3px;
+	font-size: large;
+	margin-top: 6px;
+	font-weight: bold;
+	display: flex; /* Flexbox 사용 */
+	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+}
+
+input[type="button"] {
+	background-color: white;
+	color: black;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 16px;
+	margin-top: 20px;
+	display: block;
+	width: 100px;
+	margin-left: 20px;
+}
+
+input[type="submit"] {
+	background-color: rgb(100, 149, 237);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 20px;
+	display: block;
+	width: 100px;
+}
+
+input[type="submit"]:hover {
+	background-color: rgb(72, 118, 230);
+}
+
+.button-container {
+	display: flex;
+	justify-content: center; /* 버튼을 가로로 중앙 정렬 */
+	align-items: center; /* 버튼을 세로로 중앙 정렬 */
+	margin-top: 20px;
+}
+
+.status {
+	border-style: none;
+	width: 200px;
+	height: 25px;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.memberStatus {
+	border: none;
+	font-size: large;
+	font-weight: bold;
+	width: 250px;
+	height: 35px;
+	text-align: center;
+	background-color: white;
+	border-radius: 3px;
+	font-size: large;
+	margin-top: 6px;
+}

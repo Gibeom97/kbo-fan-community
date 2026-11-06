@@ -1,0 +1,143 @@
+/* 공통 스타일 */
+.main_container {
+    width: 1080px;
+	margin: 0 auto;
+	line-height: 1.5;
+	box-sizing: border-box;
+}
+
+.support-info {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.support-info2 {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #7b7b7b;
+}
+
+/* 배너 섹션 */
+.main_banner {
+	height: 350px;
+	background-color: #f0f0f0;
+}
+
+/* 구단별 응원 모음 */
+.team-support, .popular-board, .today-meetup{ 
+    box-sizing: border-box;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.team-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+
+.gudan-board img {
+    width: 70px;
+    height: 60px;
+}
+
+
+/* 인기 게시글 */
+
+.board-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.pop-list {
+	display: flex;
+	flex-direction: column;
+	width: 130px;
+}
+
+.pop-writer {
+	color: #7b7b7b;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top:3px;	
+}
+
+.pop-title {
+	white-space: nowrap; /* 줄바꿈 방지 */
+    overflow: hidden; /* 넘친 부분 숨김 */
+    text-overflow: ellipsis; /* 넘친 부분 말줄임표(...) */
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.board img {
+    width: 130px;
+    height: 230px;
+    border-radius: 10px;
+    object-fit: cover; /* 이미지 비율을 유지하면서 영역 채움 */
+}
+
+
+/* 오늘 이런 모임 어때요? */
+/* 그리드 스타일 */
+.meetup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+    justify-items: center;
+}
+
+/* 카드 스타일 */
+.meetup-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 100%;
+    max-width: 300px;
+    text-decoration: none;
+    color: black;
+}
+
+/* 작성자 정보 */
+.meetup-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.meetup-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    white-space: nowrap;       /* 텍스트를 한 줄로 유지 */
+    overflow: hidden;          /* 넘친 텍스트를 숨김 */
+    text-overflow: ellipsis;   /* 넘친 텍스트에 '...' 표시 */
+    display: block;            /* 블록 요소로 설정 */
+}
+
+.meetup-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.time-place {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+}
+
